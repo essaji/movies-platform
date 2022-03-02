@@ -1,0 +1,23 @@
+.discover-movie {
+  max-width: 1150px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #eae7e7;
+  border-radius: 12px;
+
+  &__movie-card {
+    width: 200px;
+    position: relative;
+    cursor: pointer;
+  }
+  &__movie-card-title {
+    font-size: 14px;
+  }
+  &__movie-thumbnail {
+    height: 300px;
+  }
+
+  &__rating {
+
+  }
+}
