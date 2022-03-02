@@ -1,20 +1,32 @@
 .discover-movie {
   max-width: 1150px;
-  margin: auto;
   background-color: white;
   border: 1px solid #eae7e7;
   border-radius: 12px;
+  margin: auto auto 24px;
 
-  &__movie-card {
-    width: 200px;
-    position: relative;
-    cursor: pointer;
+  &__search {
+    display: flex;
+    justify-content: end;
+    padding: 12px;
   }
+
   &__movie-card-title {
     font-size: 14px;
+    font-weight: bold;
   }
   &__movie-thumbnail {
     height: 300px;
+  }
+
+  &__movie-card-date {
+    font-size: 12px;
+    font-style: italic;
+    position: absolute;
+    right: 0;
+    display: flex;
+    bottom: 0;
+    padding: 8px;
   }
 
   &__rating {

@@ -1,0 +1,20 @@
+.movie-reviews {
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__avatar-container {
+    font-weight: bold;
+    margin-bottom: 12px;
+    img {
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+  }
+
+  &__review-content {
+    white-space: pre-line;
+  }
+}

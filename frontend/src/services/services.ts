@@ -5,5 +5,6 @@ import axios from "axios";
 //   return config
 // })
 
-export const discoverMovie = () => axios.get("/movie/discover", { params: { sort_by: "popularity.desc", size: 10 } })
+export const discoverMovie = (search: string) => axios.get("/movie/discover", { params: { sort_by: "popularity.desc", size: 10, search } })
 export const fetchMovieDetail = (movieId: string) => axios.get(`/movie/${movieId}`)
+export const fetchMovieReviews = (movieId: string) => axios.get(`/movie/${movieId}/reviews`)

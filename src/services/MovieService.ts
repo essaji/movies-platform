@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { map, Observable } from 'rxjs';
-import Page from '../models/Page';
 import Movie from '../models/Movie';
 import axios from 'axios';
+import Review from "../models/Review";
 
 @Injectable()
 export class MovieService {
   constructor(private httpService: HttpService) {}
 
-  discoverMovie({ sort_by, size }: any): Observable<Page> {
+  discoverMovie({ sort_by, size, search }: any): Observable<Movie> {
+    if (search) return this.searchMovie({ sort_by, size, search });
     return this.httpService
       .get(`/discover/movie`, { params: { sort_by } })
       .pipe(
@@ -19,10 +20,14 @@ export class MovieService {
       );
   }
 
-  searchMovie(query: string): Observable<Page> {
+  searchMovie({ sort_by, size, search }: any): Observable<Movie> {
     return this.httpService
-      .get(`/search/movie`, { params: { query } })
-      .pipe(map((response) => new Page(response.data)));
+      .get(`/search/movie`, { params: { sort_by, query: search } })
+      .pipe(
+        map((response) =>
+          response.data.results.slice(0, size).map((m: any) => new Movie(m)),
+        ),
+      );
   }
 
   movieDetail(movieId: string): Observable<Movie> {
@@ -34,5 +39,13 @@ export class MovieService {
   async movieImage(imageUri: string, size: string): Promise<string> {
     const url = `${process.env.IMAGE_HOST_URL}/${size}/${imageUri}`;
     return (await axios.get(url, { responseType: 'arraybuffer' })).data;
+  }
+
+  movieReviews(movieId: string) {
+    return this.httpService
+      .get(`/movie/${movieId}/reviews`)
+      .pipe(
+        map((response) => response.data.results.map((r: any) => new Review(r))),
+      );
   }
 }
