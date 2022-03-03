@@ -23,7 +23,7 @@ export default function MovieDetail() {
       <div className="movie-detail">
         <div className="movie-detail__container">
           <div className="movie-detail__poster">
-            <img src={`${window.location.origin}/${movie.posterPath}`} alt="poster" />
+            <img src={movie.posterPath} alt="poster" />
           </div>
           <div className="movie-detail__overview-container">
             <div className="movie-detail__title">{movie.title}</div>

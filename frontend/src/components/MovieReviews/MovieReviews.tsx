@@ -3,7 +3,7 @@ import './movie-reviews.scss'
 import { useQuery } from "react-query";
 import { fetchMovieReviews } from "../../services/services";
 import { useParams } from "react-router-dom";
-import { Divider, Empty } from "antd";
+import { Divider, Empty, Rate, Tag } from "antd";
 
 export default function MovieReviews() {
   const { movieId } = useParams()
@@ -20,6 +20,9 @@ export default function MovieReviews() {
           <div className="movie-reviews__avatar-container">
             <img src={r.avatarPath || `https://ui-avatars.com/api/?name=${r.author}`} alt="" />
             {r.author}
+          </div>
+          <div className="movie-reviews__rating-container">
+            {r.rating ? <Rate allowHalf disabled defaultValue={r.rating} /> : <Tag children="Ratings not available" />}
           </div>
           <div className="movie-reviews__review-content">{`${r.content}`}</div>
           {(idx + 1) !== reviews.length && <Divider />}

@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { map, Observable } from 'rxjs';
 import Movie from '../models/Movie';
-import axios from 'axios';
 import Review from '../models/Review';
 
 @Injectable()
@@ -34,11 +33,6 @@ export class MovieService {
     return this.httpService
       .get(`/movie/${movieId}`)
       .pipe(map((response) => new Movie(response.data)));
-  }
-
-  async movieImage(imageUri: string, size: string): Promise<string> {
-    const url = `${process.env.IMAGE_HOST_URL}/${size}/${imageUri}`;
-    return (await axios.get(url, { responseType: 'arraybuffer' })).data;
   }
 
   movieReviews(movieId: string) {
