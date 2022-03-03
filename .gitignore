@@ -34,9 +34,6 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Dockerfile
-Dockerfile
-
 # Front-end
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
