@@ -10,7 +10,6 @@ export default function MovieReviews() {
   const { isLoading, data: query } = useQuery<any>(`${movieId}_reviews`, () => fetchMovieReviews(movieId!!))
   if (isLoading) return <div className="loader" />
   const { data: reviews } = query
-  // if (!reviews.length) return null
   return (
     <div className="movie-reviews">
       <Divider />
@@ -19,7 +18,7 @@ export default function MovieReviews() {
       {reviews.map((r: any, idx: number) => (
         <div className="movie-reviews__review" key={r.id}>
           <div className="movie-reviews__avatar-container">
-            <img src={r.avatarPath} alt="" />
+            <img src={r.avatarPath || `https://ui-avatars.com/api/?name=${r.author}`} alt="" />
             {r.author}
           </div>
           <div className="movie-reviews__review-content">{`${r.content}`}</div>

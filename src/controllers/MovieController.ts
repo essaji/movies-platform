@@ -1,7 +1,6 @@
 import { Controller, Get, Param, Query, Req, Res } from '@nestjs/common';
 import { MovieService } from '../services/MovieService';
 import { Observable } from 'rxjs';
-import { Request } from 'express';
 import Movie from '../models/Movie';
 
 @Controller('movie')
@@ -9,13 +8,13 @@ export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get('discover')
-  discoverMovie(@Query() query): Observable<Movie> {
+  discoverMovie(@Query() query): Observable<Movie[]> {
     return this.movieService.discoverMovie(query);
   }
 
   @Get('search')
-  searchMovie(@Req() request: Request, @Query() query): Observable<Movie> {
-    return this.movieService.searchMovie(query.query);
+  searchMovieNames(@Query() query): Observable<Movie[]> {
+    return this.movieService.searchMovieNames(query.query);
   }
 
   @Get(':movieId')

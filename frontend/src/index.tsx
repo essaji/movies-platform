@@ -8,10 +8,8 @@ import "../node_modules/antd/dist/antd.min.css"
 const queryClient = new QueryClient()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AppRoutes />
-    </QueryClientProvider>
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <AppRoutes />
+  </QueryClientProvider>,
   document.getElementById('root')
 );

@@ -19,7 +19,7 @@ export default class Movie {
       voteAverage: (movie.vote_average / 10) * 5,
       voteCount: movie.vote_count,
       overview: movie.overview,
-      genres: movie.genres
+      genres: movie.genres,
     };
   }
 }

@@ -3,13 +3,13 @@ import { HttpService } from '@nestjs/axios';
 import { map, Observable } from 'rxjs';
 import Movie from '../models/Movie';
 import axios from 'axios';
-import Review from "../models/Review";
+import Review from '../models/Review';
 
 @Injectable()
 export class MovieService {
   constructor(private httpService: HttpService) {}
 
-  discoverMovie({ sort_by, size, search }: any): Observable<Movie> {
+  discoverMovie({ sort_by, size, search }: any): Observable<Movie[]> {
     if (search) return this.searchMovie({ sort_by, size, search });
     return this.httpService
       .get(`/discover/movie`, { params: { sort_by } })
@@ -20,7 +20,7 @@ export class MovieService {
       );
   }
 
-  searchMovie({ sort_by, size, search }: any): Observable<Movie> {
+  searchMovie({ sort_by, size, search }: any): Observable<Array<Movie>> {
     return this.httpService
       .get(`/search/movie`, { params: { sort_by, query: search } })
       .pipe(
@@ -47,5 +47,9 @@ export class MovieService {
       .pipe(
         map((response) => response.data.results.map((r: any) => new Review(r))),
       );
+  }
+
+  searchMovieNames(query: string): Observable<Movie[]> {
+    return this.searchMovie({ search: query });
   }
 }
