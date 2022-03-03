@@ -5,6 +5,11 @@ For the purpose of the project & to avoid switching frontend & backend repositor
 `/frontend` contains the frontend implementation
 
 ### Get it running
-* Set `BASE_URL` env variable to `https://api.themoviedb.org/3`
-* Set `API_KEY` env variable
+
+* Export required env variables
+``
+export IMAGE_HOST_URL=https://image.tmdb.org/t/p/
+export BASE_URL=https://api.themoviedb.org/3
+export API_KEY=12c6aac2e0b2882014fed1e8ddf0cfe4
+``
 * Run `npm start`
